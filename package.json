@@ -1,5 +1,5 @@
 {
-  "name": "storytel-frontend-challenge",
+  "name": "message-board",
   "private": true,
   "scripts": {
     "start": "meteor run",
