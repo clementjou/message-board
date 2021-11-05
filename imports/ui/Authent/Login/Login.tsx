@@ -1,5 +1,5 @@
 import { CheckCircleFilled, LoginOutlined } from "@ant-design/icons";
-import { Button, Col, Row, Typography } from "antd";
+import { Button, Col, Row, Typography, message } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
 import { Meteor } from "meteor/meteor";
 import { useTracker } from "meteor/react-meteor-data";
@@ -10,6 +10,7 @@ const { Title } = Typography;
 
 export const Login = (props: any) => {
   const [selectedUser, setSelectedUser] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
   const { users } = getUsers();
 
   useTracker(() => {
@@ -18,6 +19,19 @@ export const Login = (props: any) => {
       props.history.push("/");
     }
   });
+
+  const logIn = (selectedUser: string) => {
+    setIsLoading(true);
+    Meteor.loginWithPassword(selectedUser, "password", (err) => {
+      if (err) {
+        message.error("Login failed");
+      } else {
+        message.success(`Welcome ${selectedUser} !`);
+      }
+      setIsLoading(false);
+    });
+  };
+
   return (
     <div className="login-page">
       <Title level={2}>Choose your profile</Title>
@@ -54,7 +68,8 @@ export const Login = (props: any) => {
         <Button
           type="primary"
           shape="round"
-          onClick={() => Meteor.loginWithPassword(selectedUser, "password")}
+          loading={isLoading}
+          onClick={() => logIn(selectedUser)}
           disabled={!selectedUser}
           icon={<LoginOutlined />}
           size="large"
