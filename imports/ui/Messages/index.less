@@ -1,0 +1,74 @@
+.message-board {
+    padding: 10px;
+
+    .messages-loading,
+    .no-messages {
+        margin: 0 auto;
+    }
+
+    .message-col {
+        .ant-card {
+            .ant-card-body {
+                cursor: pointer;
+                position: relative;
+                &:hover {
+                    text-decoration: underline;
+                }
+                .is-private {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                    color: red;
+                    cursor: default;
+                }
+            }
+        }
+    }
+}
+
+.message-detail {
+    .detail {
+        .message {
+            font-size: 18px;
+        }
+        .profile-picture {
+            width: 48px;
+            height: 48px;
+            img {
+                width: 48px;
+                height: 48px;
+            }
+        }
+    }
+    .replies-list {
+        padding: 10px;
+        .is-private {
+            color: red;
+        }
+    }
+
+    .reply-loading {
+        margin-top: 40px;
+    }
+    .reply-editor {
+        .ant-form-item {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.filters {
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    .filter-item {
+        width: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &:not(:first-child) {
+            margin-top: 15px;
+        }
+    }
+}
